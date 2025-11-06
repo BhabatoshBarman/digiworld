@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digi World | Personal Hub</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
+<style>
+:root {
+  --accent: #00e5ff;
+  --accent2: #ff4081;
+  --dark-bg: linear-gradient(-45deg, #0f172a, #1e293b, #0f172a, #334155);
+  --light-bg: linear-gradient(135deg, #ffffff, #e3f2fd);
+  --text-dark: #fff;
+  --text-light: #111;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background: var(--dark-bg);
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
+  color: var(--text-dark);
+  transition: 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+@keyframes gradientShift {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+[data-theme="light"] {
+  background: var(--light-bg);
+  color: var(--text-light);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  z-index: 200;
+}
+.theme-toggle:hover {
+  transform: scale(1.1) rotate(10deg);
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 30px;
+  flex-grow: 1;
+}
+
+/* Sidebar */
+.sidebar {
+  text-align: center;
+  padding: 30px 10px;
+}
+.profile img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 5px solid var(--accent);
+  box-shadow: 0 0 20px rgba(0,229,255,0.6);
+}
+.sidebar h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2em;
+  margin: 15px 0 5px;
+}
+#typed-text {
+  font-size: 1em;
+  opacity: 0.8;
+  min-height: 22px;
+}
+
+/* Links */
+.link-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.6em;
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+  margin-top: 40px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.links {
+  display: grid;
+  gap: 20px;
+  width: 100%;
+  max-width: 650px;
+}
+.link-card a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--accent);
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  transition: all 0.4s ease;
+}
+.link-card a:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 0 25px var(--accent);
+}
+.link-card-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  margin-right: 15px;
+  border: 2px solid var(--accent);
+  object-fit: cover;
+}
+.link-card-content strong {
+  font-family: 'Poppins', sans-serif;
+  color: var(--accent);
+  font-size: 1.1em;
+}
+.link-card-content span {
+  opacity: 0.8;
+  font-size: 0.85em;
+}
+
+/* Footer */
+footer {
+  background: rgba(255,255,255,0.05);
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9em;
+  margin-top: auto;
+  color: inherit;
+}
+
+/* Responsive */
+@media (min-width: 850px) {
+  .main-content {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 40px;
+  }
+  .sidebar {
+    text-align: left;
+  }
+}
+</style>
+</head>
+<body data-theme="dark">
+<button class="theme-toggle" onclick="toggleTheme()">
+  <span class="material-symbols-outlined">light_mode</span>
+</button>
+
+<div class="main-content">
+  <div class="sidebar">
+    <div class="profile">
+      <img src="dg.png" alt="Digiworld Profile">
+      <h1>Digi World</h1>
+      <p id="typed-text"></p>
+    </div>
+  </div>
+
+  <div class="link-area">
+    <h2>⭐ My Projects & Apps</h2>
+    <div class="links">
+        <div class="link-card"><a href="https://adrs2026.github.io/D-Coin/index.html" target="_blank"><img src="https://via.placeholder.com/60/00BCD4/fff?text=DC" class="link-card-logo"><div class="link-card-content"><strong>D-Coin</strong><span>Digital currency demo project</span></div></a></div>
+
+        <div class="link-card"><a href="https://wwwbibahbandhan-cmyk.github.io/-2026" target="_blank"><img src="https://via.placeholder.com/60/ff4081/fff?text=BB" class="link-card-logo"><div class="link-card-content"><strong>Bibah Bandhan</strong><span>Matrimony web app (2026)</span></div></a></div>
+
+        <div class="link-card"><a href="https://wwwbibahbandhan-cmyk.github.io/hello/index.html" target="_blank"><img src="https://via.placeholder.com/60/9C27B0/fff?text=HELLO" class="link-card-logo"><div class="link-card-content"><strong>Hello Portal</strong><span>Friendly welcome web</span></div></a></div>
+
+        <div class="link-card"><a href="https://bhabatoshbarman.github.io/Pos" target="_blank"><img src="https://via.placeholder.com/60/FFC107/fff?text=POS" class="link-card-logo"><div class="link-card-content"><strong>POS System</strong><span>Billing & inventory system</span></div></a></div>
+
+        <div class="link-card"><a href="https://lb2026.github.io/LB" target="_blank"><img src="https://via.placeholder.com/60/4CAF50/fff?text=LB" class="link-card-logo"><div class="link-card-content"><strong>LB Portal</strong><span>Personal library dashboard</span></div></a></div>
+
+        <div class="link-card"><a href="https://love-u-2.github.io/KingPizza" target="_blank"><img src="https://via.placeholder.com/60/E91E63/fff?text=KP" class="link-card-logo"><div class="link-card-content"><strong>King Pizza</strong><span>Restaurant ordering website</span></div></a></div>
+
+        <div class="link-card"><a href="https://love-u-2.github.io/qr" target="_blank"><img src="https://via.placeholder.com/60/03A9F4/fff?text=QR" class="link-card-logo"><div class="link-card-content"><strong>QR Tools</strong><span>Custom QR generator</span></div></a></div>
+
+        <div class="link-card"><a href="https://love-u-2.github.io/pic-resize" target="_blank"><img src="https://via.placeholder.com/60/FF5722/fff?text=IMG" class="link-card-logo"><div class="link-card-content"><strong>Image Resize Tool</strong><span>Resize or compress photos online</span></div></a></div>
+
+        <div class="link-card"><a href="https://dgw24.github.io/ss/index.html" target="_blank"><img src="https://via.placeholder.com/60/2196F3/fff?text=SS" class="link-card-logo"><div class="link-card-content"><strong>Smart System</strong><span>Secure web system</span></div></a></div>
+
+        <div class="link-card"><a href="https://dgw24.github.io/dmj" target="_blank"><img src="https://via.placeholder.com/60/00BCD4/fff?text=DMJ" class="link-card-logo"><div class="link-card-content"><strong>DMJ Project</strong><span>Digital marketing journal</span></div></a></div>
+
+        <div class="link-card"><a href="https://dgw24.github.io/nova" target="_blank"><img src="https://via.placeholder.com/60/9C27B0/fff?text=NOVA" class="link-card-logo"><div class="link-card-content"><strong>Nova</strong><span>Experimental future UI</span></div></a></div>
+
+        <div class="link-card"><a href="https://dgw24.github.io/resturent" target="_blank"><img src="https://via.placeholder.com/60/4CAF50/fff?text=RST" class="link-card-logo"><div class="link-card-content"><strong>Restaurant App</strong><span>Food order demo</span></div></a></div>
+
+        <div class="link-card"><a href="https://dgw24.github.io/ttv" target="_blank"><img src="https://via.placeholder.com/60/FFEB3B/000?text=TTV" class="link-card-logo"><div class="link-card-content"><strong>TTV</strong><span>Streaming test project</span></div></a></div>
+
+        <div class="link-card"><a href="https://dgw24.github.io/tot" target="_blank"><img src="https://via.placeholder.com/60/009688/fff?text=TOT" class="link-card-logo"><div class="link-card-content"><strong>TOT Tool</strong><span>Utility converter web</span></div></a></div>
+
+        <div class="link-card"><a href="https://dgw24.github.io/webp_to_jpg" target="_blank"><img src="https://via.placeholder.com/60/673AB7/fff?text=IMG" class="link-card-logo"><div class="link-card-content"><strong>WebP → JPG Converter</strong><span>Instant image format converter</span></div></a></div>
+
+        <div class="link-card"><a href="https://dgw24.github.io/adr" target="_blank"><img src="https://via.placeholder.com/60/795548/fff?text=ADR" class="link-card-logo"><div class="link-card-content"><strong>ADR Portal</strong><span>Admin & Data Record panel</span></div></a></div>
+
+        <div class="link-card"><a href="https://dgw24.github.io/mrkt" target="_blank"><img src="https://via.placeholder.com/60/F44336/fff?text=MRK" class="link-card-logo"><div class="link-card-content"><strong>Market Dashboard</strong><span>Local shop manager</span></div></a></div>
+
+        <div class="link-card"><a href="https://dgw24.github.io/khata" target="_blank"><img src="https://via.placeholder.com/60/FF9800/fff?text=KHT" class="link-card-logo"><div class="link-card-content"><strong>Digital Khata</strong><span>Ledger and customer record system</span></div></a></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  &copy; <span id="year"></span> Digi World | All Rights Reserved.
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Theme toggle
+function toggleTheme() {
+  const body = document.body;
+  const icon = document.querySelector('.theme-toggle span');
+  const isLight = body.getAttribute('data-theme') === 'light';
+  body.setAttribute('data-theme', isLight ? 'dark' : 'light');
+  icon.textContent = isLight ? 'light_mode' : 'dark_mode';
+}
+
+// Typing animation
+const texts = ["Creative Web Developer", "UI Designer", "Tech Explorer"];
+let i = 0, j = 0, current = "";
+(function typing() {
+  if (j < texts[i].length) {
+    current += texts[i][j++];
+    document.getElementById('typed-text').textContent = current;
+    setTimeout(typing, 100);
+  } else {
+    setTimeout(() => { j = 0; current = ""; i = (i+1)%texts.length; typing(); }, 1500);
+  }
+})();
+</script>
+</body>
+</html>
