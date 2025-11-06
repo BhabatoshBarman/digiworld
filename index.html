@@ -1,264 +1,601 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Digi World | Personal Hub</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digi World | Personal Web Hub</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<style>
-:root {
-  --accent: #00e5ff;
-  --accent2: #ff4081;
-  --dark-bg: linear-gradient(-45deg, #0f172a, #1e293b, #0f172a, #334155);
-  --light-bg: linear-gradient(135deg, #ffffff, #e3f2fd);
-  --text-dark: #fff;
-  --text-light: #111;
-}
+ <style>
+  :root {
+    --bg-gradient: linear-gradient(135deg, #141E30 0%, #243B55 100%);
+    --accent-color: #00E0FF;
+    --card-bg: rgba(255,255,255,0.08);
+    --card-hover: rgba(0, 0, 0, 0.338);
+    --text-color: #f0f0f0;
+    --shadow-color: rgba(0,0,0,0.5);
+    --footer-bg: rgba(255,255,255,0.08);
+  }
 
-body {
-  margin: 0;
-  font-family: 'Roboto', sans-serif;
-  background: var(--dark-bg);
-  background-size: 400% 400%;
-  animation: gradientShift 12s ease infinite;
-  color: var(--text-dark);
-  transition: 0.5s ease;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-@keyframes gradientShift {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
-}
+  [data-theme="light"] {
+    --bg-gradient: linear-gradient(135deg, #c3fff8 0%, #fea0e9 100%);
+    --accent-color: #007BFF;
+    --card-bg: #ffffe3;
+    --card-hover: #bbffb6;
+    --text-color: #111;
+    --shadow-color: rgba(0,0,0,0.1);
+    --footer-bg: rgba(0,0,0,0.05);
+  }
 
-[data-theme="light"] {
-  background: var(--light-bg);
-  color: var(--text-light);
-}
+  * {
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+  }
 
-/* Theme Toggle Button */
-.theme-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  color: #fff;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  transition: all 0.3s ease;
-  z-index: 200;
-}
-.theme-toggle:hover {
-  transform: scale(1.1) rotate(10deg);
-}
+  body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
 
-.main-content {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 1200px;
-  margin: auto;
-  padding: 30px;
-  flex-grow: 1;
-}
+  .theme-toggle {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background: var(--card-bg);
+    border: 1px solid var(--accent-color);
+    color: var(--text-color);
+    padding: 8px 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 2px 10px var(--shadow-color);
+    z-index: 100;
+  }
 
-/* Sidebar */
-.sidebar {
-  text-align: center;
-  padding: 30px 10px;
-}
-.profile img {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  border: 5px solid var(--accent);
-  box-shadow: 0 0 20px rgba(0,229,255,0.6);
-}
-.sidebar h1 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 2em;
-  margin: 15px 0 5px;
-}
-#typed-text {
-  font-size: 1em;
-  opacity: 0.8;
-  min-height: 22px;
-}
-
-/* Links */
-.link-area {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-}
-h2 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.6em;
-  color: var(--accent);
-  border-bottom: 2px solid var(--accent);
-  margin-top: 40px;
-  margin-bottom: 20px;
-  text-align: center;
-}
-.links {
-  display: grid;
-  gap: 20px;
-  width: 100%;
-  max-width: 650px;
-}
-.link-card a {
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid var(--accent);
-  border-radius: 15px;
-  padding: 15px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-  transition: all 0.4s ease;
-}
-.link-card a:hover {
-  transform: translateY(-5px) scale(1.03);
-  box-shadow: 0 0 25px var(--accent);
-}
-.link-card-logo {
-  width: 60px;
-  height: 60px;
-  border-radius: 10px;
-  margin-right: 15px;
-  border: 2px solid var(--accent);
-  object-fit: cover;
-}
-.link-card-content strong {
-  font-family: 'Poppins', sans-serif;
-  color: var(--accent);
-  font-size: 1.1em;
-}
-.link-card-content span {
-  opacity: 0.8;
-  font-size: 0.85em;
-}
-
-/* Footer */
-footer {
-  background: rgba(255,255,255,0.05);
-  text-align: center;
-  padding: 20px;
-  font-size: 0.9em;
-  margin-top: auto;
-  color: inherit;
-}
-
-/* Responsive */
-@media (min-width: 850px) {
   .main-content {
     display: grid;
     grid-template-columns: 350px 1fr;
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+    padding: 40px;
     gap: 40px;
   }
+
+  /* ==== Sidebar Section ==== */
   .sidebar {
+    text-align: center;
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 224, 255, 0.25);
+    padding: 40px 20px;
+    backdrop-filter: blur(12px);
+  }
+
+  .sidebar img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid transparent;
+    background: linear-gradient(45deg, #00e5ff, #ff4081, #00bcd4);
+    background-size: 300% 300%;
+    animation: borderFlow 6s ease infinite;
+    padding: 5px;
+    object-fit: cover;
+  }
+
+  @keyframes borderFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .sidebar h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2em;
+    margin: 15px 0 5px;
+    color: var(--accent-color);
+  }
+
+  .sidebar p {
+    opacity: 0.9;
+    font-size: 0.95em;
+    margin-bottom: 15px;
+  }
+
+  .quote {
+    font-style: italic;
+    font-size: 0.9em;
+    opacity: 0.7;
+    margin: 15px 0 25px;
+  }
+
+  .skills {
+    margin: 25px 0;
     text-align: left;
   }
+
+  .skills h3 {
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+  }
+
+  .skills ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .skills li {
+    margin: 5px 0;
+    font-size: 0.9em;
+    opacity: 0.85;
+  }
+
+  .socials {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 25px;
 }
+
+.socials a {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4em;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+/* Platform-specific colors */
+.socials a.facebook   { background: #1877f2; }
+.socials a.youtube    { background: #ff0000; }
+.socials a.instagram  { background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4); }
+.socials a.twitter    { background: #000000; } /* X style */
+.socials a.linkedin   { background: #0a66c2; }
+.socials a.github     { background: #333; }
+.socials a.email      { background: #ea4335; }
+
+.socials a:hover {
+  transform: scale(1.2) rotate(5deg);
+  box-shadow: 0 0 20px var(--accent-color);
+}
+
+
+  /* ==== Link Cards Section ==== */
+  .link-area h2 {
+    font-family: 'Poppins', sans-serif;
+    color: var(--accent-color);
+    font-size: 1.6em;
+    margin-bottom: 25px;
+    text-align: left;
+  }
+
+  .links {
+    display: grid;
+    gap: 20px;
+  }
+
+  .link-card a {
+    display: flex;
+    align-items: center;
+    background: var(--card-bg);
+    border: 1px solid var(--accent-color);
+    border-radius: 15px;
+    padding: 15px;
+    text-decoration: none;
+    color: var(--text-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease;
+  }
+
+  .link-card a:hover {
+    transform: translateY(-6px) scale(1.03);
+    background: var(--card-hover);
+    box-shadow: 0 10px 25px var(--accent-color),
+                0 0 20px var(--accent-color);
+  }
+
+  .link-card-logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    margin-right: 15px;
+    object-fit: cover;
+    
+    
+  }
+
+  .link-card-content strong {
+    font-size: 1.1em;
+    color: var(--accent-color);
+  }
+
+  .link-card-content span {
+    display: block;
+    opacity: 0.75;
+    font-size: 0.85em;
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9em;
+    background: var(--footer-bg);
+  }
+
+  /* Add this to your existing <style> block */
+
+.contact-info {
+  margin: 25px 0;
+  text-align: left;
+}
+
+.contact-info h3 {
+  color: var(--accent-color);
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+.contact-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-info li {
+  margin: 5px 0;
+  font-size: 0.9em;
+  opacity: 0.85;
+}
+
+.info-block, .contact-info, .skills {
+  text-align: left;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  padding: 15px;
+  margin: 20px 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.info-block h3, .contact-info h3, .skills h3 {
+  color: var(--accent-color);
+  margin-bottom: 10px;
+  font-size: 1.1em;
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 4px;
+}
+
+.info-block ul, .contact-info ul, .skills ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.info-block li, .contact-info li, .skills li {
+  margin: 6px 0;
+  font-size: 0.9em;
+  opacity: 0.85;
+}
+
+.info-block a, .contact-info a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+.info-block a:hover, .contact-info a:hover {
+  text-decoration: underline;
+}
+
+
+  @media (max-width: 850px) {
+    .main-content {
+      grid-template-columns: 1fr;
+      padding: 20px;
+    }
+    .sidebar {
+      margin-bottom: 30px;
+    }
+  }
 </style>
 </head>
+
 <body data-theme="dark">
-<button class="theme-toggle" onclick="toggleTheme()">
-  <span class="material-symbols-outlined">light_mode</span>
-</button>
+  <button class="theme-toggle" onclick="toggleTheme()">🌗 Theme</button>
 
-<div class="main-content">
-  <div class="sidebar">
+  <div class="main-content">
+
+    <div class="sidebar">
     <div class="profile">
-      <img src="dg.png" alt="Digiworld Profile">
-      <h1>Digi World</h1>
-      <p id="typed-text"></p>
+        <img src="dg.png" alt="Profile Photo">
+        <h1>Digi  World</h1>
+        <p class="title">💻 Full Stack Web Developer</p>
+        <p class="intro">Passionate about crafting creative, responsive, and user-friendly digital experiences. I love merging technology and design to build useful things for people.</p>
     </div>
-  </div>
 
-  <div class="link-area">
-    <h2>⭐ My Projects & Apps</h2>
-    <div class="links">
-        <div class="link-card"><a href="https://adrs2026.github.io/D-Coin/index.html" target="_blank"><img src="https://via.placeholder.com/60/00BCD4/fff?text=DC" class="link-card-logo"><div class="link-card-content"><strong>D-Coin</strong><span>Digital currency demo project</span></div></a></div>
-
-        <div class="link-card"><a href="https://wwwbibahbandhan-cmyk.github.io/-2026" target="_blank"><img src="https://via.placeholder.com/60/ff4081/fff?text=BB" class="link-card-logo"><div class="link-card-content"><strong>Bibah Bandhan</strong><span>Matrimony web app (2026)</span></div></a></div>
-
-        <div class="link-card"><a href="https://wwwbibahbandhan-cmyk.github.io/hello/index.html" target="_blank"><img src="https://via.placeholder.com/60/9C27B0/fff?text=HELLO" class="link-card-logo"><div class="link-card-content"><strong>Hello Portal</strong><span>Friendly welcome web</span></div></a></div>
-
-        <div class="link-card"><a href="https://bhabatoshbarman.github.io/Pos" target="_blank"><img src="https://via.placeholder.com/60/FFC107/fff?text=POS" class="link-card-logo"><div class="link-card-content"><strong>POS System</strong><span>Billing & inventory system</span></div></a></div>
-
-        <div class="link-card"><a href="https://lb2026.github.io/LB" target="_blank"><img src="https://via.placeholder.com/60/4CAF50/fff?text=LB" class="link-card-logo"><div class="link-card-content"><strong>LB Portal</strong><span>Personal library dashboard</span></div></a></div>
-
-        <div class="link-card"><a href="https://love-u-2.github.io/KingPizza" target="_blank"><img src="https://via.placeholder.com/60/E91E63/fff?text=KP" class="link-card-logo"><div class="link-card-content"><strong>King Pizza</strong><span>Restaurant ordering website</span></div></a></div>
-
-        <div class="link-card"><a href="https://love-u-2.github.io/qr" target="_blank"><img src="https://via.placeholder.com/60/03A9F4/fff?text=QR" class="link-card-logo"><div class="link-card-content"><strong>QR Tools</strong><span>Custom QR generator</span></div></a></div>
-
-        <div class="link-card"><a href="https://love-u-2.github.io/pic-resize" target="_blank"><img src="https://via.placeholder.com/60/FF5722/fff?text=IMG" class="link-card-logo"><div class="link-card-content"><strong>Image Resize Tool</strong><span>Resize or compress photos online</span></div></a></div>
-
-        <div class="link-card"><a href="https://dgw24.github.io/ss/index.html" target="_blank"><img src="https://via.placeholder.com/60/2196F3/fff?text=SS" class="link-card-logo"><div class="link-card-content"><strong>Smart System</strong><span>Secure web system</span></div></a></div>
-
-        <div class="link-card"><a href="https://dgw24.github.io/dmj" target="_blank"><img src="https://via.placeholder.com/60/00BCD4/fff?text=DMJ" class="link-card-logo"><div class="link-card-content"><strong>DMJ Project</strong><span>Digital marketing journal</span></div></a></div>
-
-        <div class="link-card"><a href="https://dgw24.github.io/nova" target="_blank"><img src="https://via.placeholder.com/60/9C27B0/fff?text=NOVA" class="link-card-logo"><div class="link-card-content"><strong>Nova</strong><span>Experimental future UI</span></div></a></div>
-
-        <div class="link-card"><a href="https://dgw24.github.io/resturent" target="_blank"><img src="https://via.placeholder.com/60/4CAF50/fff?text=RST" class="link-card-logo"><div class="link-card-content"><strong>Restaurant App</strong><span>Food order demo</span></div></a></div>
-
-        <div class="link-card"><a href="https://dgw24.github.io/ttv" target="_blank"><img src="https://via.placeholder.com/60/FFEB3B/000?text=TTV" class="link-card-logo"><div class="link-card-content"><strong>TTV</strong><span>Streaming test project</span></div></a></div>
-
-        <div class="link-card"><a href="https://dgw24.github.io/tot" target="_blank"><img src="https://via.placeholder.com/60/009688/fff?text=TOT" class="link-card-logo"><div class="link-card-content"><strong>TOT Tool</strong><span>Utility converter web</span></div></a></div>
-
-        <div class="link-card"><a href="https://dgw24.github.io/webp_to_jpg" target="_blank"><img src="https://via.placeholder.com/60/673AB7/fff?text=IMG" class="link-card-logo"><div class="link-card-content"><strong>WebP → JPG Converter</strong><span>Instant image format converter</span></div></a></div>
-
-        <div class="link-card"><a href="https://dgw24.github.io/adr" target="_blank"><img src="https://via.placeholder.com/60/795548/fff?text=ADR" class="link-card-logo"><div class="link-card-content"><strong>ADR Portal</strong><span>Admin & Data Record panel</span></div></a></div>
-
-        <div class="link-card"><a href="https://dgw24.github.io/mrkt" target="_blank"><img src="https://via.placeholder.com/60/F44336/fff?text=MRK" class="link-card-logo"><div class="link-card-content"><strong>Market Dashboard</strong><span>Local shop manager</span></div></a></div>
-
-        <div class="link-card"><a href="https://dgw24.github.io/khata" target="_blank"><img src="https://via.placeholder.com/60/FF9800/fff?text=KHT" class="link-card-logo"><div class="link-card-content"><strong>Digital Khata</strong><span>Ledger and customer record system</span></div></a></div>
+    <div class="info-block">
+        <h3>📍 Personal Details</h3>
+        <ul> 
+        <li><h2> BHABATOSH BARMAN </h2></li>
+        <li><strong>Experience :-</strong> 5+ Years in Web Development</li>
+        <li><strong>Education :-</strong> B.Sc in Computer Science</li>
+        <li><strong>Languages :-</strong> English, Bengali, Hindi</li>
+        <li><strong>Location :-</strong> Rajapur, Tapan Dakshin Dinajpur, West Bengal, India - 733127</li>
+        </ul>
     </div>
-  </div>
+
+    <div class="contact-info">
+        <h3>📞 Contact</h3>
+        <ul>
+        <li><strong>📧 Email : </strong> <a href="mailto:digiworldonline24@gmail.com">digiworldonline24@gmail.com</a></li>
+        <li><strong>💬 WhatsApp : </strong><a href="https://wa.me/9064899089" target="_blank"> +91 90648 99089</a></li>
+        <li><strong>🌐 Website : </strong> <a href="https://bhabatoshbarman.github.io/digiworld" target="_blank">digiworldonline24.com</a></li>
+        </ul>
+    </div>
+
+    <div class="skills">
+        <h3>💼 Skills</h3>
+        <ul>
+        <li>✒️ HTML, CSS, JavaScript, React</li>
+        <li>✒️ Node.js, Express, MongoDB</li>
+        <li>✒️ Google Sheets / Firebase Integration</li>
+        <li>✒️ UI/UX Design & Responsive Web Layouts</li>
+        <li>✒️ Version Control (Git / GitHub)</li>
+        </ul>
+    </div>
+
+    <div class="socials">
+  <a href="https://facebook.com/anirban.bhattachariya.3" target="_blank" title="Facebook" class="facebook">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+
+  <a href="https://www.youtube.com/@BINDASSBOY" target="_blank" title="YouTube" class="youtube">
+    <i class="fab fa-youtube"></i>
+  </a>
+
+  <a href="https://www.instagram.com/" target="_blank" title="Instagram" class="instagram">
+    <i class="fab fa-instagram"></i>
+  </a>
+
+  <a href="https://x.com/bhabatosh_dev" target="_blank" title="Twitter / X" class="twitter">
+    <i class="fab fa-x-twitter"></i>
+  </a>
+
+  <a href="https://linkedin.com/in/bhabatosh-barman" target="_blank" title="LinkedIn" class="linkedin">
+    <i class="fab fa-linkedin-in"></i>
+  </a>
+
+  <a href="https://github.com/bhabatoshbarman" target="_blank" title="GitHub" class="github">
+    <i class="fab fa-github"></i>
+  </a>
+
+  <a href="mailto:bhabatosh.dev@gmail.com" title="Email" class="email">
+    <i class="fa-solid fa-envelope"></i>
+  </a>
 </div>
 
-<footer>
-  &copy; <span id="year"></span> Digi World | All Rights Reserved.
-</footer>
 
-<script>
-document.getElementById("year").textContent = new Date().getFullYear();
+    <p class="quote">“Design is intelligence made visible. Code is creativity made functional.”</p>
+    </div>
 
-// Theme toggle
-function toggleTheme() {
-  const body = document.body;
-  const icon = document.querySelector('.theme-toggle span');
-  const isLight = body.getAttribute('data-theme') === 'light';
-  body.setAttribute('data-theme', isLight ? 'dark' : 'light');
-  icon.textContent = isLight ? 'light_mode' : 'dark_mode';
-}
+    <div class="link-area">
+    <h2>⭐ My Projects & Apps</h2>
+    <div class="links">
+        <div class="links">
 
-// Typing animation
-const texts = ["Creative Web Developer", "UI Designer", "Tech Explorer"];
-let i = 0, j = 0, current = "";
-(function typing() {
-  if (j < texts[i].length) {
-    current += texts[i][j++];
-    document.getElementById('typed-text').textContent = current;
-    setTimeout(typing, 100);
-  } else {
-    setTimeout(() => { j = 0; current = ""; i = (i+1)%texts.length; typing(); }, 1500);
-  }
-})();
-</script>
+  <div class="link-card">
+    <a href="https://adrs2026.github.io/D-Coin/index.html" target="_blank">
+      <img src="dcoin.png" class="link-card-logo" alt="D-Coin">
+      <div class="link-card-content">
+        <strong>D-Coin</strong>
+        <span>Digital currency demo project</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="link-card">
+    <a href="https://wwwbibahbandhan-cmyk.github.io/-2026" target="_blank">
+      <img src="bbandhan.png" class="link-card-logo" alt="Bibah Bandhan">
+      <div class="link-card-content">
+        <strong>Bibah Bandhan</strong>
+        <span>Matrimony web app (2026)</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="link-card">
+    <a href="https://wwwbibahbandhan-cmyk.github.io/hello/index.html" target="_blank">
+      <img src="hellocht.png" class="link-card-logo" alt="Hello Chat">
+      <div class="link-card-content">
+        <strong>Hello Chat</strong>
+        <span>Friendly welcome chat web</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="link-card">
+    <a href="https://bhabatoshbarman.github.io/Pos" target="_blank">
+      <img src="bapos.png" class="link-card-logo" alt="POS System">
+      <div class="link-card-content">
+        <strong>POS System</strong>
+        <span>Billing & inventory management system</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="link-card">
+    <a href="https://lb2026.github.io/LB" target="_blank">
+      <img src="lbp.png" class="link-card-logo" alt="LB Portal">
+      <div class="link-card-content">
+        <strong>LB Portal</strong>
+        <span>Personal library dashboard</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="link-card">
+    <a href="https://love-u-2.github.io/KingPizza" target="_blank">
+      <img src="kingpzz.png" class="link-card-logo" alt="King Pizza">
+      <div class="link-card-content">
+        <strong>King Pizza</strong>
+        <span>Restaurant ordering website</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="link-card">
+    <a href="https://love-u-2.github.io/qr" target="_blank">
+      <img src="aqr.png" class="link-card-logo" alt="Advanced QR">
+      <div class="link-card-content">
+        <strong>Advanced QR</strong>
+        <span>Custom stylish colorful QR generator</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="link-card">
+    <a href="https://love-u-2.github.io/pic-resize" target="_blank">
+      <img src="ptool.png" class="link-card-logo" alt="Image Resize Tool">
+      <div class="link-card-content">
+        <strong>Image Resize Tool</strong>
+        <span>Resize or compress photos online</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="link-card">
+    <a href="https://dgw24.github.io/ss/index.html" target="_blank">
+      <img src="reading.gif" class="link-card-logo" alt="Shishu Sikkha Kendra">
+      <div class="link-card-content">
+        <strong>Shishu Sikkha Kendra</strong>
+        <span>Kids learning and education platform</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="link-card">
+    <a href="https://dgw24.github.io/dmj" target="_blank">
+      <img src="dataimg.png" class="link-card-logo" alt="Data Image">
+      <div class="link-card-content">
+        <strong>Data Image</strong>
+        <span>Image to data converter tool</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="link-card">
+    <a href="https://dgw24.github.io/nova" target="_blank">
+      <img src="nova.png" class="link-card-logo" alt="Nova">
+      <div class="link-card-content">
+        <strong>Nova</strong>
+        <span>Experimental futuristic UI concept</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="link-card">
+    <a href="https://dgw24.github.io/resturent" target="_blank">
+      <img src="restu.png" class="link-card-logo" alt="Restaurant App">
+      <div class="link-card-content">
+        <strong>Restaurant App</strong>
+        <span>Food order web demo</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="link-card">
+    <a href="https://dgw24.github.io/ttv" target="_blank">
+      <img src="voice-message.png" class="link-card-logo" alt="Text to Voice">
+      <div class="link-card-content">
+        <strong>Text to Voice</strong>
+        <span>Speech conversion & streaming demo</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="link-card">
+    <a href="https://dgw24.github.io/tot" target="_blank">
+      <img src="tot.png" class="link-card-logo" alt="Tik Tack Too">
+      <div class="link-card-content">
+        <strong>Tik Tack Too</strong>
+        <span>Fun interactive game project</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="link-card">
+    <a href="https://dgw24.github.io/webp_to_jpg" target="_blank">
+      <img src="webp.png" class="link-card-logo" alt="WebP to JPG Converter">
+      <div class="link-card-content">
+        <strong>WebP → JPG Converter</strong>
+        <span>Instant image format converter</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="link-card">
+    <a href="https://dgw24.github.io/adr" target="_blank">
+      <img src="adr.png" class="link-card-logo" alt="Aadhaar Create">
+      <div class="link-card-content">
+        <strong>Aadhaar Create</strong>
+        <span>Admin & Data Record management</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="link-card">
+    <a href="https://dgw24.github.io/mrkt" target="_blank">
+      <img src="freshmkt.png" class="link-card-logo" alt="Fresh Market">
+      <div class="link-card-content">
+        <strong>Fresh Market</strong>
+        <span>Local shop and sales dashboard</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="link-card">
+    <a href="https://dgw24.github.io/khata" target="_blank">
+      <img src="khat.png" class="link-card-logo" alt="Digital Khata">
+      <div class="link-card-content">
+        <strong>Digital Khata</strong>
+        <span>Ledger and customer record system</span>
+      </div>
+    </a>
+  </div>
+</div>
+  </div>
+</div>
+</div>
+  <footer>
+    &copy; <span id="year"></span> Bhabatosh Barman | All Rights Reserved
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    function toggleTheme() {
+      const body = document.body;
+      body.dataset.theme = body.dataset.theme === 'light' ? 'dark' : 'light';
+    }
+  </script>
 </body>
 </html>
