@@ -20,13 +20,14 @@
   }
 
   [data-theme="light"] {
-    --bg-gradient: linear-gradient(135deg, #c3fff8 0%, #fea0e9 100%);
+        --bg-gradient: linear-gradient(135deg, #c3fff8 0%, #fea0e9 100%);
     --accent-color: #007BFF;
     --card-bg: #ffffe3;
-    --card-hover: #bbffb6;
+    --card-hover: #f6ffb6;
     --text-color: #111;
     --shadow-color: rgba(0,0,0,0.1);
     --footer-bg: rgba(0,0,0,0.05);
+    
   }
 
   * {
@@ -68,6 +69,7 @@
     padding: 40px;
     gap: 40px;
   }
+  
 
   /* ==== Sidebar Section ==== */
   .sidebar {
@@ -190,7 +192,10 @@
 
   .links {
     display: grid;
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    justify-content: center;
+    padding: 20px;
   }
 
   .link-card a {
@@ -312,6 +317,10 @@
       grid-template-columns: 1fr;
       padding: 20px;
     }
+    .links {
+      grid-template-columns: 1fr; /* 1 card per row on mobile */
+      padding: 10px;
+    }
     .sidebar {
       margin-bottom: 30px;
     }
@@ -319,7 +328,7 @@
 </style>
 </head>
 
-<body data-theme="dark">
+<body data-theme="light">
   <button class="theme-toggle" onclick="toggleTheme()">🌗 Theme</button>
 
   <div class="main-content">
@@ -400,7 +409,6 @@
     <div class="link-area">
     <h2>⭐ My Projects & Apps</h2>
     <div class="links">
-        <div class="links">
 
   <div class="link-card">
     <a href="https://adrs2026.github.io/D-Coin/index.html" target="_blank">
@@ -573,6 +581,26 @@
   </div>
 
   <div class="link-card">
+    <a href="https://love-u-2.github.io/wbsedcl" target="_blank">
+      <img src="https://smest.in/_next/image?url=https%3A%2F%2Fissuer-master-article-logos.s3.ap-south-1.amazonaws.com%2FWestBengalStateElectricityDistribution.png&w=3840&q=75" class="link-card-logo" alt="WBSEDCL Bill System">
+      <div class="link-card-content">
+        <strong>WBSEDCL Bill System</strong>
+        <span>Electric bill payment and management portal</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="link-card">
+    <a href="https://love-u-2.github.io/gm" target="_blank">
+      <img src="kz.png" class="link-card-logo" alt="GM Portal">
+      <div class="link-card-content">
+        <strong>Kids Game Zone</strong>
+        <span>Play. Learn. Shine — a modern fun world for kids!</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="link-card">
     <a href="https://dgw24.github.io/khata" target="_blank">
       <img src="khat.png" class="link-card-logo" alt="Digital Khata">
       <div class="link-card-content">
@@ -590,11 +618,17 @@
   </footer>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    function toggleTheme() {
-      const body = document.body;
-      body.dataset.theme = body.dataset.theme === 'light' ? 'dark' : 'light';
-    }
-  </script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const body = document.body;
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  body.dataset.theme = savedTheme;
+
+  function toggleTheme() {
+    const newTheme = body.dataset.theme === 'light' ? 'dark' : 'light';
+    body.dataset.theme = newTheme;
+    localStorage.setItem('theme', newTheme);
+  }
+</script>
 </body>
 </html>
